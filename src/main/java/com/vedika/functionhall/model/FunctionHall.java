@@ -11,6 +11,7 @@ public class FunctionHall {
 	private String state;
 	private String city;
 	private int zipcode;
+	private String imageurl;
 	public String getId() {
 		return id;
 	}
@@ -47,13 +48,17 @@ public class FunctionHall {
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
 	}
+	public String getImageurl() {
+		return imageurl;
+	}
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
 	@Override
 	public String toString() {
 		return "FunctionHall [id=" + id + ", name=" + name + ", street=" + street + ", state=" + state + ", city="
-				+ city + ", zipcode=" + zipcode + "]";
+				+ city + ", zipcode=" + zipcode + ", imageurl=" + imageurl + "]";
 	}
-
-
 	
 }
 

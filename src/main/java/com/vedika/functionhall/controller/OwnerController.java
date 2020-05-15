@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,17 +18,20 @@ import com.vedika.functionhall.model.Response;
 import com.vedika.functionhall.service.OwnerService;
 
 //Required imports
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class OwnerController {
+	
 
 	@Autowired
 	private OwnerService ownerService;
-
+	
+	
 	@GetMapping(value = "/functionhalls")
+	
 	public Response getAllFunctionHalls() {
-
-
+		//CorsConfiguratio configuration = new CorsConfiguration();
 		List<Owner> functionhallOwners = ownerService.findAll();
 
 		List<FunctionHallUIResponse> functionhallsUI = new ArrayList<FunctionHallUIResponse>();
@@ -42,6 +46,7 @@ public class OwnerController {
 					for(FunctionHall functionHall : funtionhalls) {
 
 						FunctionHallUIResponse response = new FunctionHallUIResponse();
+						
 						response.setOwnerFirstName(owner.getFirstName());
 						response.setOwnerLastName(owner.getLastName());
 						response.setFunctionHallName(functionHall.getName());
@@ -50,6 +55,7 @@ public class OwnerController {
 						response.setOwnerId(owner.getId());
 						response.setState(functionHall.getState());
 						response.setZipcode(functionHall.getZipcode());
+						response.setImageurl(functionHall.getImageurl());
 
 						functionhallsUI.add(response);
 					}
